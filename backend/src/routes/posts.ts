@@ -10,6 +10,7 @@ const prisma = new PrismaClient();
 router.get('/posts', authenticate , async (_req, res) => {
   try {
     const posts = await prisma.post.findMany({
+      take: 100,
       orderBy: { postedAt: 'desc' },
     });
     res.json(posts);
@@ -20,15 +21,30 @@ router.get('/posts', authenticate , async (_req, res) => {
 });
 
 // GET paginated posts
-router.get('/paginate', authenticate, async (req, res) => {
+router.get('/paginate', authenticate , async (req, res) => {
   const page = parseInt(req.query.page as string) || 1;
-  const limit = parseInt(req.query.limit as string) || 10;
+  const limit = parseInt(req.query.limit as string) || 10; // Cap limit to 100 max
+  const skip = (page - 1) * limit;
 
   try {
-    const result = await getPaginatedPosts(page, limit);
-    res.json(result);
-  } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch posts' });
+    const posts = await prisma.post.findMany({
+      skip,
+      take: limit,
+      orderBy: { postedAt: 'desc' },
+    });
+
+    const total = await prisma.post.count();
+
+    res.json({
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit),
+      totalPosts: total,
+      posts,
+    });
+  } catch (error) {
+    console.error('Error fetching paginated posts:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
