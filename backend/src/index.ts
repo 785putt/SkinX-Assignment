@@ -2,11 +2,16 @@ import express from 'express';
 import posts from './routes/posts';
 import authRoutes from './routes/authRoutes';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 
-app.use(cors());
+app.use(cors( {
+  origin: 'http://localhost:3000', // frontend URL
+  credentials: true, // allow cookies
+}));
 app.use(express.json());
+app.use(cookieParser());
 
 app.use('/', posts);
 app.use(authRoutes);

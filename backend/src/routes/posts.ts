@@ -10,7 +10,6 @@ const prisma = new PrismaClient();
 router.get('/posts', authenticate , async (_req, res) => {
   try {
     const posts = await prisma.post.findMany({
-      take: 100,
       orderBy: { postedAt: 'desc' },
     });
     res.json(posts);
@@ -23,7 +22,7 @@ router.get('/posts', authenticate , async (_req, res) => {
 // GET paginated posts
 router.get('/paginate', authenticate , async (req, res) => {
   const page = parseInt(req.query.page as string) || 1;
-  const limit = parseInt(req.query.limit as string) || 10; // Cap limit to 100 max
+  const limit = parseInt(req.query.limit as string) || 50;
   const skip = (page - 1) * limit;
 
   try {
