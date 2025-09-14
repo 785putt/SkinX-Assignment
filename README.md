@@ -1,6 +1,14 @@
 ### SkinX-Assignment
 ## (Note: Backend & Frontend both have a succesful build and production testing prior) 
 
+## Technology-Stack use:
+- NodeJS + Prisma
+- ReactJS / NextJS
+- MySQL
+- Git/Github
+- Postman API
+- VSCode IDE
+
 ## Steps setting up backend:
 
 ## 1. creating/connecting new database in MySQL (example sql below)
