@@ -1,4 +1,5 @@
 ### SkinX-Assignment
+## (Note: Backend & Frontend both have a succesful build and production testing prior) 
 
 ## Steps setting up backend:
 
@@ -88,6 +89,7 @@
 ## 2. run the app
    ```bash
    cd my-next-app
+   npm i
    npm run dev
    ```
 
