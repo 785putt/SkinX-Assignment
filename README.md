@@ -1,53 +1,74 @@
-# SkinX-Assignment
+### SkinX-Assignment
 
-Steps setting up backend:
+## Steps setting up backend:
 
-1. creating/connecting new database in MySQL (example sql below)
+## 1. creating/connecting new database in MySQL (example sql below)
+   ```bash
    CREATE DATABASE IF NOT EXISTS posts_db CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+   ```
 
    Set up .env in root folder containing:
 
+   ```bash
    DATABASE_URL="your_db_url"
    JWT_SECRET="your_secret"
+   ```
 
-2. setting up project NodeJS + Prisma
+## 2. setting up project NodeJS + Prisma
+   ```bash
    cd backend
    npm i
+   ```
 
-   (skip the rest of setup to step 6 only if you're working on project already having its Prisma & schema + migrations)
+   # (skip the rest of setup to step 6 only if you're working on project already having its Prisma & schema + migrations)
 
+   ```bash
    npm i prisma @prisma/client mysql2
    npm install prisma @prisma/client ts-node typescript express
-
+   
    npx prisma init
+   ```
 
-3. creating tsconfig
+## 3. creating tsconfig
+   ```bash
    npx tsc --init
+   ```
 
-4. seed script
+## 4. seed script
+   ```bash
    node prisma/seed.js or npx ts-node scripts/seed.ts
+   ```
 
-5. generate prisma
+## 5. generate prisma
+   ```bash
    npx prisma generate
+   ```
 
-6. migrate create table
+## 6. migrate create table
+   ```bash
    npx prisma migrate dev --name "nameofchoice" (only if you're creating new model in database)
    npx prisma migrate dev
    npx prisma db seed (optional)
+   ```
 
-7. run the server
+## 7. run the server
+   ```bash
    npm run dev
+   ```
 
-Optional
+## Optional
 
-1. build server
+## 1. build server
+   ```bash
    npm run build
+   ```
 
-2. run build
+## 2. run build
+   ```bash
    npm run start
+   ```
 
-Backend features:
-
+## Backend features:
 - Business logic layer
 - Pagination
 - User Authentication (JWT)
@@ -56,18 +77,27 @@ Backend features:
 - Prisma ORM
 - CORS security
 
-Steps setting up frontend:
 
-1. create NextJS app
+## Steps setting up frontend:
+
+## 1. create NextJS app
+   ```bash
    npx create-next-app@latest my-next-app
+   ```
 
-2. run the app
+## 2. run the app
+   ```bash
    cd my-next-app
    npm run dev
+   ```
 
-3. build app & run production
+## 3. build app & run production
+   ```bash
+   npm run build
+   npm run start
+   ```
 
-Frontend features:
+## Frontend features:
 
 - Responsive UI
 - Pagination
